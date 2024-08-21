@@ -15,7 +15,7 @@ public class AdminDogController {
     String list(Model model){
         model.addAttribute("activeFunction", "home");
 //        setupVersion(model);
-
+// nadias testCommit
         model.addAttribute("dogs", dogService.getPublicDogs());
         return "admin/dogs/list";
     }
