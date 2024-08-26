@@ -12,7 +12,15 @@ public class DogService {
     @Autowired
     DogRepository dogRepository;
 
-    public List<Dog> getPublicDogs(){
+    public List<Dog> getPublicDogs() {
         return dogRepository.findAllBySoldToIsNull();
+    }
+
+    public List<Dog> searchDogs(String searchTerm) {
+        return dogRepository.searchAndFilterDogs(searchTerm);
+    }
+
+    public List<Dog> sortDogs(String sortField) {
+        return dogRepository.sortDogsByField(sortField);
     }
 }

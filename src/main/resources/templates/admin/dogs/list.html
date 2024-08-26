@@ -5,43 +5,22 @@
       layout:decorate="layouts/layouttemplate"
       data-theme="light">
 
-
 <th:block layout:fragment="extraHead">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@event-calendar/build@1.5.0/event-calendar.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@event-calendar/build@1.5.0/event-calendar.min.js"></script>
     <script src="/js/modal.js"></script>
-
 </th:block>
 
-<!--    <header>-->
-<!--        <div class="content">-->
-<!--            <div class="btn-left">-->
-<!--                <button class="btn btn-blue">-->
-<!--                    <span class="fas fa-plus mr-2"></span>-->
-<!--                    New Task-->
-<!--                </button>-->
-<!--            </div>-->
-<!--            <div class="btn-right">-->
-<!--                <button class="btn btn-sec left-radius">Share</button>-->
-<!--                <button class="btn btn-sec right-radius">Export</button>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </header>    -->
 <div layout:fragment="mainContent">
-
     <div class="row-box">
         <div class="col-boxes-1">
             <div class="col-table">
                 <div class="table-section">
                     <div class="header-table">
                         <h2>Alla hundar</h2>
-                        <!--                        <a href="#">see all</a>-->
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     </div>
 
@@ -50,43 +29,46 @@
         Ny hund
     </a>
     <br/><br/>
-    <form method="GET">
+
+    <form method="GET" th:action="@{/admin/dogs}">
         Search:
         <input type="text" name="q" value="" />
+        <button type="submit">Search</button>
     </form>
+
     <table class="tabulator-table">
         <thead>
         <tr class="tabulator-row">
             <th class="tabulator-cell">
                 Name
-                <a href="?"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+                <a href="?sort=name"><i class="fa-solid fa-arrow-up-a-z"></i></a>
             </th>
 
-            <th >
+            <th>
                 Breed
-                <a href="?"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+                <a href="?sort=breed"><i class="fa-solid fa-arrow-up-a-z"></i></a>
             </th>
-            <th>Age
-                <a href="?"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+
+            <th>
+                Age
+                <a href="?sort=age"><i class="fa-solid fa-arrow-up-a-z"></i></a>
             </th>
-            <th>Size
-                <a href="?"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+
+            <th>
+                Size
+                <a href="?sort=size"><i class="fa-solid fa-arrow-up-a-z"></i></a>
             </th>
-            <th>Price
-                <a href="?"><i class="fa-solid fa-arrow-up-a-z"></i></a>
-                <a href="?"><i class="fa-solid fa-arrow-down-z-a"></i></a>
+
+            <th>
+                Price
+                <a href="?sort=price"><i class="fa-solid fa-arrow-up-a-z"></i></a>
             </th>
             <th></th>
         </tr>
-
         </thead>
         <tbody id="tablerows">
-        <tr th:each="dog: ${dogs}">
-            <th th:text="${dog.getName()}"></th>
+        <tr th:each="dog : ${dogs}">
+            <td th:text="${dog.getName()}"></td>
             <td th:text="${dog.getBreed()}"></td>
             <td th:text="${dog.getAge()}"></td>
             <td th:text="${dog.getSize()}"></td>
@@ -95,15 +77,7 @@
                 <a class="listbutton">Edit</a>
             </td>
         </tr>
-
         </tbody>
     </table>
-
 </div>
-
-
-
-
-
-
 </html>
