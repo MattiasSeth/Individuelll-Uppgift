@@ -23,4 +23,9 @@ public class DogService {
     public List<Dog> sortDogs(String sortField) {
         return dogRepository.sortDogsByField(sortField);
     }
+
+    public Dog getById(int id){
+        Long longId = (long) id;
+        return dogRepository.findById(longId).get();
+    }
 }
