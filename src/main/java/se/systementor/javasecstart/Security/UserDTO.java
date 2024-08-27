@@ -16,5 +16,6 @@ public class UserDTO {
 
     public UUID id;
     public String username;
+    public String password;
     public List<String> roles;
 }
