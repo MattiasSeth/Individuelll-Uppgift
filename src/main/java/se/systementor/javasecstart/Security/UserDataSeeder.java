@@ -1,6 +1,8 @@
 package se.systementor.javasecstart.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,7 @@ public class UserDataSeeder {
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
+
 
     public void Seed(){
 
@@ -45,4 +48,6 @@ public class UserDataSeeder {
         Role role = new Role();
         roleRepository.save(Role.builder().name(name).build());
     }
+
+
 }

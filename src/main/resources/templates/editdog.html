@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="sv"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layouts/layouttemplate"
+      data-theme="light">
+
+<th:block layout:fragment="extraHead">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@event-calendar/build@1.5.0/event-calendar.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@event-calendar/build@1.5.0/event-calendar.min.js"></script>
+    <script src="/js/modal.js"></script>
+</th:block>
+
+
+<div layout:fragment="mainContent">
+    <div class="row-box">
+        <div class="col-boxes-1">
+            <div class="col-table">
+                <div class="table-section">
+                    <div class="header-table">
+                        <h2>Edit </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <form th:action="@{/update}" th:object="${Dog}" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" th:field="*{name}"><br><br>
+
+        <label for="breed">Breed:</label><br>
+        <input type="text" id="breed" th:field="*{breed}"><br><br>
+
+        <label for="age">Age:</label><br>
+        <input type="text" id="age" th:field="*{age}"><br><br>
+
+        <label for="price">Price:</label><br>
+        <input type="text" id="price" th:field="*{price}"><br><br>
+
+        <label for="size">Size:</label><br>
+        <input type="text" id="size" th:field="*{size}"><br><br>
+
+        <input type="hidden" id="id" th:field="*{id}"><br><br>
+
+        <input type="submit" value="Submit" class="listbutton">
+    </form>
+</div>
+
+</html>

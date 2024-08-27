@@ -20,7 +20,24 @@ public class DogService {
         return dogRepository.searchAndFilterDogs(searchTerm);
     }
 
-    public List<Dog> sortDogs(String sortField) {
-        return dogRepository.sortDogsByField(sortField);
+    public List<Dog> sortDogs(String sortField, String direction) {
+        return dogRepository.sortDogsByFieldAndDirection(sortField, direction);
+    }
+    public Dog getById(int id){
+        Long longId = (long) id;
+        return dogRepository.findById(longId).get();
+    }
+
+    public void updateDog (Dog dog){
+        Long dogId = (long) dog.getId();
+        Dog currentDog = dogRepository.findById(dogId).get();
+
+        currentDog.setName(dog.getName());
+        currentDog.setBreed(dog.getBreed());
+        currentDog.setAge(dog.getAge());
+        currentDog.setSize(dog.getSize());
+        currentDog.setPrice(dog.getPrice());
+
+        dogRepository.save(currentDog);
     }
 }
