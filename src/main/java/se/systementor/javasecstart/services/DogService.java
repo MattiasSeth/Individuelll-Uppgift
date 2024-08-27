@@ -2,10 +2,12 @@ package se.systementor.javasecstart.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import se.systementor.javasecstart.DTO.DogDTO;
 import se.systementor.javasecstart.model.Dog;
 import se.systementor.javasecstart.model.DogRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DogService {
@@ -14,6 +16,25 @@ public class DogService {
 
     public List<Dog> getPublicDogs() {
         return dogRepository.findAllBySoldToIsNull();
+    }
+
+    public List<DogDTO> getPublicDogsDTO() {
+        List<Dog> dogs = dogRepository.findAllBySoldToIsNull();
+        return dogs.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    public DogDTO convertToDTO (Dog dog){
+        return DogDTO.builder()
+                .id(dog.getId())
+                .age(dog.getAge())
+                .price(dog.getPrice())
+                .size(dog.getSize())
+                .name(dog.getName())
+                .image(dog.getImage())
+                .breed(dog.getBreed())
+                .build();
     }
 
     public List<Dog> searchDogs(String searchTerm) {

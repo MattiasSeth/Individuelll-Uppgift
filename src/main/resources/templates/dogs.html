@@ -34,15 +34,14 @@
     <div class="cards dogcards">
         <div class="card dogcard" th:each="dog: ${dogs}">
             <div class="card-top-info">
-          <h3 th:text="${dog.getName()}"></h3>
-                <img th:src="${dog.getImage()}" class="animal-img">
+                 <h3 th:text="${dog.getName()}"></h3> <img th:src="${dog.getImage()}" class="animal-img">
             </div>
             <p>
-                <ul style="text-align: center">
-                    <li th:text="${dog.getBreed()}"></li>
-            <li th:text="${dog.getAge()}"></li>
-            <li th:text="${dog.getPrice()}"> kr</li>
-                </ul>
+            <ul style="text-align: center">
+                <li th:text="${dog.getBreed()}"></li>
+                <li th:text="${dog.getAge()}"></li>
+                <li th:text="${dog.getPrice()}"> kr</li>
+            </ul>
             </p>
         </div>
     </div>

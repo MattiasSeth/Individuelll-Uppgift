@@ -15,7 +15,7 @@ public class PublicDogsController {
         model.addAttribute("activeFunction", "publicdogs");
 //        setupVersion(model);
 
-        model.addAttribute("dogs", dogService.getPublicDogs());
+        model.addAttribute("dogs", dogService.getPublicDogsDTO());
         return "dogs";
     }
 
