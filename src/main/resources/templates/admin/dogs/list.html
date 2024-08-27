@@ -33,7 +33,7 @@
     <form method="GET" th:action="@{/admin/dogs}">
         Search:
         <input type="text" name="q" value="" />
-        <button type="submit">Search</button>
+        <button type="submit" class="listbutton">Search</button>
     </form>
 
     <table class="tabulator-table">
@@ -79,7 +79,7 @@
             <td th:text="${dog.getSize()}"></td>
             <td th:text="${dog.getPrice()}"></td>
             <td>
-                <a class="listbutton">Edit</a>
+                <a th:href="@{/admin/dogs/edit/{id}(id=${dog.getId()})}" class="listbutton">Edit</a>
             </td>
         </tr>
         </tbody>
