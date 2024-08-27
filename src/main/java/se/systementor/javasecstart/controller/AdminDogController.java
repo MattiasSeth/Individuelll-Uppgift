@@ -34,13 +34,17 @@ public class AdminDogController {
     @GetMapping(path = "/admin/dogs")
     String list(@RequestParam(value = "q", required = false) String query,
                 @RequestParam(value = "sort", required = false) String sortField,
+                @RequestParam(value = "dir", required = false) String direction,
                 Model model) {
         model.addAttribute("activeFunction", "home");
 
         if (query != null && !query.isEmpty()) {
             model.addAttribute("dogs", dogService.searchDogs(query));
         } else if (sortField != null && !sortField.isEmpty()) {
-            model.addAttribute("dogs", dogService.sortDogs(sortField));
+            if (direction == null || direction.isEmpty()) {
+                direction = "asc";
+            }
+            model.addAttribute("dogs", dogService.sortDogs(sortField, direction));
         } else {
             model.addAttribute("dogs", dogService.getPublicDogs());
         }

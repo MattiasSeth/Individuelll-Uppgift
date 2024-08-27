@@ -20,10 +20,9 @@ public class DogService {
         return dogRepository.searchAndFilterDogs(searchTerm);
     }
 
-    public List<Dog> sortDogs(String sortField) {
-        return dogRepository.sortDogsByField(sortField);
+    public List<Dog> sortDogs(String sortField, String direction) {
+        return dogRepository.sortDogsByFieldAndDirection(sortField, direction);
     }
-
     public Dog getById(int id){
         Long longId = (long) id;
         return dogRepository.findById(longId).get();
