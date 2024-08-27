@@ -3,6 +3,8 @@ package se.systementor.javasecstart.Security;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import se.systementor.javasecstart.model.Role;
+import se.systementor.javasecstart.model.User;
 
 import java.util.ArrayList;
 import java.util.Collection;

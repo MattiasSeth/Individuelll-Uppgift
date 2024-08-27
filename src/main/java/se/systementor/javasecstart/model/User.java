@@ -1,4 +1,4 @@
-package se.systementor.javasecstart.Security;
+package se.systementor.javasecstart.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

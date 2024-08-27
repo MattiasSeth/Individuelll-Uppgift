@@ -1,10 +1,10 @@
 package se.systementor.javasecstart.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import se.systementor.javasecstart.model.Role;
+import se.systementor.javasecstart.model.User;
 
 import java.util.ArrayList;
 

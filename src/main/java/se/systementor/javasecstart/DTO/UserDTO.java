@@ -1,4 +1,4 @@
-package se.systementor.javasecstart.Security;
+package se.systementor.javasecstart.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.systementor.javasecstart.DTO.DogDTO;
 import se.systementor.javasecstart.model.Dog;
-import se.systementor.javasecstart.model.DogRepository;
+import se.systementor.javasecstart.Repositories.DogRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class DogService {
@@ -19,10 +18,7 @@ public class DogService {
     }
 
     public List<DogDTO> getPublicDogsDTO() {
-        List<Dog> dogs = dogRepository.findAllBySoldToIsNull();
-        return dogs.stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
+        return dogRepository.findAllBySoldToIsNull().stream().map(d -> convertToDTO(d)).toList();
     }
 
     public DogDTO convertToDTO (Dog dog){

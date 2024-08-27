@@ -1,7 +1,8 @@
-package se.systementor.javasecstart.model;
+package se.systementor.javasecstart.Repositories;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import se.systementor.javasecstart.model.Dog;
 
 import java.util.List;
 

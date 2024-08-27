@@ -4,7 +4,7 @@ import com.github.javafaker.Faker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import se.systementor.javasecstart.model.Dog;
-import se.systementor.javasecstart.model.DogRepository;
+import se.systementor.javasecstart.Repositories.DogRepository;
 
 import java.io.File;
 import java.net.URISyntaxException;
