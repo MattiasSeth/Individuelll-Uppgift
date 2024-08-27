@@ -28,4 +28,17 @@ public class DogService {
         Long longId = (long) id;
         return dogRepository.findById(longId).get();
     }
+
+    public void updateDog (Dog dog){
+        Long dogId = (long) dog.getId();
+        Dog currentDog = dogRepository.findById(dogId).get();
+
+        currentDog.setName(dog.getName());
+        currentDog.setBreed(dog.getBreed());
+        currentDog.setAge(dog.getAge());
+        currentDog.setSize(dog.getSize());
+        currentDog.setPrice(dog.getPrice());
+
+        dogRepository.save(currentDog);
+    }
 }

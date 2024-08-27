@@ -74,7 +74,7 @@
             <td th:text="${dog.getSize()}"></td>
             <td th:text="${dog.getPrice()}"></td>
             <td>
-                <a href="/edit" class="listbutton">Edit</a>
+                <a th:href="@{/admin/dogs/edit/{id}(id=${dog.getId()})}" class="listbutton">Edit</a>
             </td>
         </tr>
         </tbody>
