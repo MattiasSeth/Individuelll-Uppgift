@@ -21,14 +21,15 @@ public class AdminDogController {
     @RequestMapping(path = "admin/dogs/edit/{id}")
     public String editDog(@PathVariable int id, Model model){
         Dog dog = dogService.getById(id);
-        System.out.println(dog.getId());
-        model.addAttribute("Dog", dog);
+        DogDTO dogDTO = dogService.convertToDTO(dog);
+        model.addAttribute("dog", dogDTO);
         return "editdog";
     }
 
     @PostMapping("/update")
-    public String updateDog(Model model, Dog dog) {
-        dogService.updateDog(dog);
+    public String updateDog(Model model, DogDTO dogDTO) {
+        Dog dog = dogService.getById(dogDTO.getId());
+        dogService.updateDog(dogDTO);
         return "redirect:/admin/dogs";
     }
 
