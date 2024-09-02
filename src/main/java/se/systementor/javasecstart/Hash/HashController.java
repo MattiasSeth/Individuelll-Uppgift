@@ -2,13 +2,20 @@ package se.systementor.javasecstart.Hash;
 
 import com.google.common.hash.Hashing;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+@Controller
+public class HashController {
 
-public class HashMethods {
+    @RequestMapping(path = "/hash")
+    public String showHash (){
+        return "hash.html";
+    }
 
     public String SHA56 (String string){
         String sha256hex = Hashing.sha256()
