@@ -7,7 +7,6 @@ import se.systementor.javasecstart.model.Dog;
 import se.systementor.javasecstart.Repositories.DogRepository;
 
 import java.util.List;
-
 @Service
 public class DogService {
     @Autowired
@@ -55,7 +54,6 @@ public class DogService {
         currentDog.setAge(dogDTO.getAge());
         currentDog.setSize(dogDTO.getSize());
         currentDog.setPrice(dogDTO.getPrice());
-
         dogRepository.save(currentDog);
     }
 }

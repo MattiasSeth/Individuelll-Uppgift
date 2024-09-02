@@ -1,14 +1,30 @@
-package se.systementor.javasecstart.Security;
+package se.systementor.backend3start.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.authority.mapping.GrantedAuthoritiesMapper;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.core.oidc.OidcIdToken;
+import org.springframework.security.oauth2.core.oidc.user.OidcUserAuthority;
+import org.springframework.security.oauth2.core.user.OAuth2UserAuthority;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.authentication.dao.*;
+import se.systementor.javasecstart.Security.UserDetailsServiceImpl;
+
+
+import java.util.*;
 
 @Configuration
 @EnableWebSecurity
@@ -38,20 +54,43 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/",  "/js/**", "/css/**", "/images/**", "/login/**", "/logout","/queues/**" ,"/reset-password" ,"/forgot-password","/registreraSida", "/registreraUser" )
-                        .permitAll()
+                        .requestMatchers("/",  "/js/**", "/css/**", "/images/**", "/login/**", "/logout","/queues/**" ).permitAll()
                         .anyRequest().authenticated()
                 )
+                .oauth2Login(oauth2->{
+                    oauth2.userInfoEndpoint(ep->{
+                        ep.userAuthoritiesMapper( this.userAuthoritiesMapper() );
+                    });
+                })
                 .formLogin((form) -> form
-                        .loginPage("/login")
-                        .defaultSuccessUrl("/", true)
-                        .permitAll()
+//                        .loginPage("/login")
+                                .permitAll()
                 )
                 .logout((logout) -> {
                     logout.permitAll();
                     logout.logoutSuccessUrl("/");
-                });
+                })
+                .csrf(AbstractHttpConfigurer::disable);
 
         return http.build();
+    }
+
+    private GrantedAuthoritiesMapper userAuthoritiesMapper() {
+
+        return (authorities) -> {
+            List<SimpleGrantedAuthority> mappedAuthorities = new ArrayList<>();
+            authorities.forEach(authority -> {
+
+                if (authority instanceof OAuth2UserAuthority oauth2UserAuthority) {
+                    Map<String, Object> userAttributes = oauth2UserAuthority.getAttributes();
+                    String login = userAttributes.get("login").toString();
+
+                    if(login.equals("aspcodenet")){
+                        mappedAuthorities.add(new SimpleGrantedAuthority("Admin"));
+                    }
+                }
+            });
+            return mappedAuthorities;
+        };
     }
 }
