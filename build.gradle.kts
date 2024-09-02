@@ -52,6 +52,7 @@ dependencies {
     implementation("org.springframework.security:spring-security-test")
     implementation("org.springframework.boot:spring-boot-starter-mail")
     implementation("org.springframework.boot:spring-boot-starter-oauth2-client")
+    implementation("com.google.guava:guava:32.1.3-jre")
 }
 
 
