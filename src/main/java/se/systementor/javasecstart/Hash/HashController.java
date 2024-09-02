@@ -2,7 +2,6 @@ package se.systementor.javasecstart.Hash;
 
 import com.google.common.hash.Hashing;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,8 +34,6 @@ public class HashController {
         return "hashed";
     }
 
-
-
     public String SHA256 (String string){
         String sha256hex = Hashing.sha256()
                 .hashString(string, StandardCharsets.UTF_8)
@@ -63,10 +60,5 @@ public class HashController {
         return hashtext;
     }
 
-    public String BCrypt (String string){
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String hash = encoder.encode(string);
-        return hash;
-    }
 }
 
